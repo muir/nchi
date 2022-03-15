@@ -1,4 +1,4 @@
-# nchi - http router
+# nchi - http router with speed, flexbility, and performance
 
 [![GoDoc](https://godoc.org/github.com/muir/nchi?status.png)](https://pkg.go.dev/github.com/muir/nchi)
 ![unit tests](https://github.com/muir/nchi/actions/workflows/go.yml/badge.svg)
@@ -9,7 +9,7 @@
 This readme is heavily based upon the README.md in https://github.com/go-chi/chi.
 --->
 
-`nchi` is a lightweight, idiomatic and composable router for building Go HTTP services. It's
+`nchi` is a lightweight, elegant, and fast router for building Go HTTP services. It's
 especially good at helping you write large REST API services that are kept maintainable as your
 project grows and changes. `nchi` is built on top of the 
 [nject](https://github.com/muir/nject) dependency injection framework and 
@@ -113,7 +113,6 @@ func main() {
     r.Post("/", createArticle)                                        // POST /articles
     r.Get("/search", searchArticles)                                  // GET /articles/search
 
-    // Regexp url parameters:
     r.Get("/:articleSlug", getArticleBySlug)                          // GET /articles/home-is-toronto
 
     // Subrouters:

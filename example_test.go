@@ -92,6 +92,6 @@ func Example() {
 
 	// Output: 200 ->{"stuff":"joe"}
 	// 204 ->
-	// 400 ->nvelope_test.ExampleRequestBundle model: Could not decode application/json into nvelope_test.PostBodyModel: invalid character 'i' looking for beginning of value
+	// 400 ->nchi_test.ExampleRequestBundle model: Could not decode application/json into nchi_test.PostBodyModel: invalid character 'i' looking for beginning of value
 	// 500 ->panic: something is not right
 }

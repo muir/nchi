@@ -26,10 +26,9 @@ type Mux struct {
 // modifying the current one
 func (mux *Mux) With(providers ...interface{}) *Mux {
 	n := &Mux{
-		providers: nject.Sequence(mux.path, providers...),
+		providers: nject.Sequence(mux.path, translateMiddleware(providers)...),
 	}
 	mux.routes = append(mux.routes, n)
-	n.Use(providers...)
 	return n
 }
 
@@ -59,7 +58,7 @@ func (mux *Mux) Group(f func(mux *Mux)) {
 // the providers here.
 func (mux *Mux) Method(method string, path string, providers ...interface{}) {
 	n := &Mux{
-		providers: nject.Sequence(method+" "+path, providers...),
+		providers: nject.Sequence(method+" "+path, translateMiddleware(providers)...),
 		method:    method,
 		path:      path,
 	}
@@ -81,7 +80,7 @@ func (mux *Mux) Bind() error {
 	for _, opt := range mux.options {
 		opt(&rtr{router})
 	}
-	err := mux.bind(router, "", mux.providers)
+	err := mux.bind(router, "", nject.Sequence("empty"))
 	if err != nil {
 		return err
 	}
@@ -95,7 +94,7 @@ func (mux *Mux) bind(router *httprouter.Router, path string, providers *nject.Co
 	if mux.group {
 		combinedProviders = mux.providers
 	} else {
-		combinedProviders = mux.providers.Append(combinedPath, providers)
+		combinedProviders = providers.Append(combinedPath, mux.providers)
 	}
 	for _, route := range mux.routes {
 		err := route.bind(router, combinedPath, combinedProviders)
@@ -127,13 +126,14 @@ func (mux *Mux) Use(providers ...interface{}) {
 	if mux.path != "" {
 		n = mux.path
 	}
-	mux.providers = mux.providers.Append(n, providers...)
+	mux.providers = mux.providers.Append(n, translateMiddleware(providers)...)
 }
 
-func (mux *Mux) Get(path string, providers ...interface{})  { mux.Method("GET", path, providers...) }
-func (mux *Mux) Head(path string, providers ...interface{}) { mux.Method("HEAD", path, providers...) }
-func (mux *Mux) Post(path string, providers ...interface{}) { mux.Method("POST", path, providers...) }
-func (mux *Mux) Put(path string, providers ...interface{})  { mux.Method("PUT", path, providers...) }
+func (mux *Mux) Get(path string, providers ...interface{})   { mux.Method("GET", path, providers...) }
+func (mux *Mux) Head(path string, providers ...interface{})  { mux.Method("HEAD", path, providers...) }
+func (mux *Mux) Post(path string, providers ...interface{})  { mux.Method("POST", path, providers...) }
+func (mux *Mux) Put(path string, providers ...interface{})   { mux.Method("PUT", path, providers...) }
+func (mux *Mux) Patch(path string, providers ...interface{}) { mux.Method("PATCH", path, providers...) }
 func (mux *Mux) Options(path string, providers ...interface{}) {
 	mux.Method("OPTIONS", path, providers...)
 }
@@ -141,4 +141,3 @@ func (mux *Mux) Options(path string, providers ...interface{}) {
 func (mux *Mux) Delete(path string, providers ...interface{}) {
 	mux.Method("DELETE", path, providers...)
 }
-func (mux *Mux) Patch(path string, providers ...interface{}) { mux.Method("PATCH", path, providers...) }

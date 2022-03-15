@@ -51,23 +51,13 @@ func (mux *Mux) bindSpecial(router *httprouter.Router, combinedPath string, comb
 	return nil
 }
 
-// The following comment is copied from https://github.com/julienschmidt/httprouter
-
-// ServeFiles serves files from the given file system root. The path
-// must end with "/*filepath", files are then served from the local path
-// /defined/root/dir/*filepath. For example if root is "/etc" and *filepath
-// is "passwd", the local file "/etc/passwd" would be served. Internally
-// a http.FileServer is used, therefore http.NotFound is used instead of
-// the Router's NotFound handler. To use the operating system's file system
-// implementation, use http.Dir:
-func (mux *Mux) ServeFiles(path string, fs http.FileSystem) {
+func (mux *Mux) addSpecial(name string, providers []interface{}) *Mux {
 	n := &Mux{
-		path: path,
-		special: &special{
-			serveFiles: fs,
-		},
+		providers: nject.Sequence(name, translateMiddleware(providers)...),
+		special:   &special{},
 	}
 	mux.routes = append(mux.routes, n)
+	return n
 }
 
 // The following comment is derrived from https://github.com/julienschmidt/httprouter
@@ -79,13 +69,7 @@ func (mux *Mux) ServeFiles(path string, fs http.FileSystem) {
 //
 // Only the first GobalOPTIONS call counts.
 func (mux *Mux) GlobalOPTIONS(providers ...interface{}) {
-	n := &Mux{
-		providers: nject.Sequence("globalOPTIONs", providers...),
-		special: &special{
-			globalOPTIONS: true,
-		},
-	}
-	mux.routes = append(mux.routes, n)
+	mux.addSpecial("globalOPTIONS", providers).special.globalOPTIONS = true
 }
 
 // The following comment is derrived from https://github.com/julienschmidt/httprouter
@@ -96,13 +80,7 @@ func (mux *Mux) GlobalOPTIONS(providers ...interface{}) {
 //
 // Only the first NotFound call counts.
 func (mux *Mux) NotFound(providers ...interface{}) {
-	n := &Mux{
-		providers: nject.Sequence("globalOPTIONs", providers...),
-		special: &special{
-			notFound: true,
-		},
-	}
-	mux.routes = append(mux.routes, n)
+	mux.addSpecial("notFound", providers).special.notFound = true
 }
 
 // The following comment is derrived from https://github.com/julienschmidt/httprouter
@@ -116,13 +94,7 @@ func (mux *Mux) NotFound(providers ...interface{}) {
 //
 // Only the first MethodNotFound call counts.
 func (mux *Mux) MethodNotAllowed(providers ...interface{}) {
-	n := &Mux{
-		providers: nject.Sequence("globalOPTIONs", providers...),
-		special: &special{
-			methodNotAllowed: true,
-		},
-	}
-	mux.routes = append(mux.routes, n)
+	mux.addSpecial("methodNotAllowed", providers).special.methodNotAllowed = true
 }
 
 type RecoverInterface interface{}
@@ -143,10 +115,23 @@ type RecoverInterface interface{}
 //
 // Only the first PanicHandler call counts.
 func (mux *Mux) PanicHandler(providers ...interface{}) {
+	mux.addSpecial("panicHandler", providers).special.panicHandler = true
+}
+
+// The following comment is copied from https://github.com/julienschmidt/httprouter
+
+// ServeFiles serves files from the given file system root. The path
+// must end with "/*filepath", files are then served from the local path
+// /defined/root/dir/*filepath. For example if root is "/etc" and *filepath
+// is "passwd", the local file "/etc/passwd" would be served. Internally
+// a http.FileServer is used, therefore http.NotFound is used instead of
+// the Router's NotFound handler. To use the operating system's file system
+// implementation, use http.Dir:
+func (mux *Mux) ServeFiles(path string, fs http.FileSystem) {
 	n := &Mux{
-		providers: nject.Sequence("globalOPTIONs", providers...),
+		path: path,
 		special: &special{
-			panicHandler: true,
+			serveFiles: fs,
 		},
 	}
 	mux.routes = append(mux.routes, n)

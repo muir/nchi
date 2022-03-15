@@ -6,7 +6,7 @@ import (
 	"github.com/muir/nvelope"
 )
 
-func translateMiddleware(raw ...interface{}) []interface{} {
+func translateMiddleware(raw []interface{}) []interface{} {
 	n := make([]interface{}, 0, len(raw))
 	hms := make([]func(http.Handler) http.Handler, 0, len(raw))
 	hfs := make([]func(http.HandlerFunc) http.HandlerFunc, 0, len(raw))
