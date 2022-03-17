@@ -52,12 +52,10 @@ func (mux *Mux) bindSpecial(router *httprouter.Router, combinedPath string, comb
 }
 
 func (mux *Mux) addSpecial(name string, providers []interface{}) *Mux {
-	n := &Mux{
+	return mux.add(&Mux{
 		providers: nject.Sequence(name, translateMiddleware(providers)...),
 		special:   &special{},
-	}
-	mux.routes = append(mux.routes, n)
-	return n
+	})
 }
 
 // The following comment is derrived from https://github.com/julienschmidt/httprouter
@@ -127,12 +125,14 @@ func (mux *Mux) PanicHandler(providers ...interface{}) {
 // a http.FileServer is used, therefore http.NotFound is used instead of
 // the Router's NotFound handler. To use the operating system's file system
 // implementation, use http.Dir:
+//
+// Currently, ServeFiles does not use any middleware.  That may change in
+// a future release.
 func (mux *Mux) ServeFiles(path string, fs http.FileSystem) {
-	n := &Mux{
+	mux.add(&Mux{
 		path: path,
 		special: &special{
 			serveFiles: fs,
 		},
-	}
-	mux.routes = append(mux.routes, n)
+	})
 }
