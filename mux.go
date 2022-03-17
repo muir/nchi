@@ -28,9 +28,15 @@ func (mux *Mux) With(providers ...interface{}) *Mux {
 	n := &Mux{
 		providers: nject.Sequence(mux.path, translateMiddleware(providers)...),
 	}
-	mux.routes = append(mux.routes, n)
 	return n
 }
+
+/*
+func (mux *Mux) add(n *Mux) *Mux{
+	mux.routes = append(mux.routes, n)
+	if !n.group {
+
+*/
 
 // Route establishes a new Mux at a new path (combined with the
 // current path context).
