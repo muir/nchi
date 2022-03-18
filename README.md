@@ -146,4 +146,4 @@ func getArticle(article *Article, w http.ResponseWriter) {
 
 ## Developement status
 
-`nchi` is brand new.  Translation of tranditional middleware is not yet tested.
+`nchi` is brand new but has good test coverage.
