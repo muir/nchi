@@ -49,7 +49,7 @@ func WithRedirectFixedPath(b bool) Option {
 // If this is the case, the request is answered with 'Method Not Allowed'
 // and HTTP status code 405.
 // If no other Method is allowed, the request is delegated to the NotFound
-// handler.  The default is: disabled..
+// handler.  The default is: enabled..
 func WithHandleMethodNotAllowed(b bool) Option {
 	return func(r *rtr) {
 		r.HandleMethodNotAllowed = b
@@ -60,7 +60,7 @@ func WithHandleMethodNotAllowed(b bool) Option {
 
 // WIthHandleOPTIONS enables/disables automatic replies to OPTIONS requests.
 // Custom OPTIONS handlers take priority over automatic replies.
-// The default is: disabled.
+// The default is: enabled.
 func WithHandleOPTIONS(b bool) Option {
 	return func(r *rtr) {
 		r.HandleOPTIONS = b
