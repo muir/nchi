@@ -1,4 +1,4 @@
-# nchi - http router with speed, flexbility, and performance
+# nchi - http router with speed, flexbility, and elegance
 
 [![GoDoc](https://godoc.org/github.com/muir/nchi?status.png)](https://pkg.go.dev/github.com/muir/nchi)
 ![unit tests](https://github.com/muir/nchi/actions/workflows/go.yml/badge.svg)

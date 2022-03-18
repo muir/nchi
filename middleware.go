@@ -15,30 +15,31 @@ func translateMiddleware(raw []interface{}) []interface{} {
 			hms = append(hms, h)
 			var j int
 			for j = i + 1; j < len(raw); j++ {
-				h, ok := raw[i].(func(http.Handler) http.Handler)
+				h, ok := raw[j].(func(http.Handler) http.Handler)
 				if !ok {
 					break
 				}
 				hms = append(hms, h)
 			}
 			n = append(n, nvelope.MiddlewareHandlerBaseWriter(hms...))
-			i = j
+			i = j - 1
 			hms = hms[:0]
 		} else if h, ok := raw[i].(func(http.HandlerFunc) http.HandlerFunc); ok {
 			hfs = append(hfs, h)
 			var j int
 			for j = i + 1; j < len(raw); j++ {
-				h, ok := raw[i].(func(http.HandlerFunc) http.HandlerFunc)
+				h, ok := raw[j].(func(http.HandlerFunc) http.HandlerFunc)
 				if !ok {
 					break
 				}
 				hfs = append(hfs, h)
 			}
 			n = append(n, nvelope.MiddlewareBaseWriter(hfs...))
-			i = j
+			i = j - 1
 			hfs = hfs[:0]
+		} else {
+			n = append(n, raw[i])
 		}
-		n = append(n, raw[i])
 	}
 	return n
 }

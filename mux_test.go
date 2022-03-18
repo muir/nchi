@@ -17,24 +17,6 @@ func makeDown(s string) func(string) string {
 	}
 }
 
-func makeUp1(s string) func(http.Handler) http.Handler {
-	return func(next http.Handler) http.Handler {
-		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			next.ServeHTTP(w, r)
-			_, _ = w.Write([]byte(s))
-		})
-	}
-}
-
-func makeUp2(s string) func(http.HandlerFunc) http.HandlerFunc {
-	return func(next http.HandlerFunc) http.HandlerFunc {
-		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			next.ServeHTTP(w, r)
-			_, _ = w.Write([]byte(s))
-		})
-	}
-}
-
 func bottom(s string, w http.ResponseWriter) {
 	_, _ = w.Write([]byte(s))
 }
@@ -46,15 +28,17 @@ type testCase struct {
 
 func doTest(t *testing.T, mux *nchi.Mux, cases []testCase) {
 	for _, tc := range cases {
-		t.Log("GET", tc.path)
-		w := httptest.NewRecorder()
-		r := httptest.NewRequest("GET", tc.path, nil)
-		mux.ServeHTTP(w, r)
-		body, err := io.ReadAll(w.Result().Body)
-		assert.NoError(t, err, tc.path)
-		got := string(body)
-		t.Log("->", got)
-		assert.Equal(t, tc.want, got, tc.path)
+		tc := tc
+		t.Run(tc.path, func(t *testing.T) {
+			w := httptest.NewRecorder()
+			r := httptest.NewRequest("GET", tc.path, nil)
+			mux.ServeHTTP(w, r)
+			body, err := io.ReadAll(w.Result().Body)
+			assert.NoError(t, err, tc.path)
+			got := string(body)
+			t.Log("->", got)
+			assert.Equal(t, tc.want, got, tc.path)
+		})
 	}
 }
 
