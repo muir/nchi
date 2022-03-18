@@ -27,11 +27,15 @@ type testCase struct {
 }
 
 func doTest(t *testing.T, mux *nchi.Mux, cases []testCase) {
+	doTestMethod(t, mux, "GET", cases)
+}
+
+func doTestMethod(t *testing.T, mux *nchi.Mux, method string, cases []testCase) {
 	for _, tc := range cases {
 		tc := tc
-		t.Run(tc.path, func(t *testing.T) {
+		t.Run(method+" "+tc.path, func(t *testing.T) {
 			w := httptest.NewRecorder()
-			r := httptest.NewRequest("GET", tc.path, nil)
+			r := httptest.NewRequest(method, tc.path, nil)
 			mux.ServeHTTP(w, r)
 			body, err := io.ReadAll(w.Result().Body)
 			assert.NoError(t, err, tc.path)

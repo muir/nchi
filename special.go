@@ -18,22 +18,28 @@ type special struct {
 	panicHandler     bool
 }
 
+func bindSpecialHandler(name string, hf *http.Handler, combinedProviders *nject.Collection) error {
+	if *hf == nil {
+		var handler http.HandlerFunc
+		err := combinedProviders.Bind(&handler, nil)
+		if err != nil {
+			return errors.Wrapf(err, "bind %s", name)
+		}
+		*hf = handler
+	}
+	return nil
+}
+
 func (mux *Mux) bindSpecial(router *httprouter.Router, combinedPath string, combinedProviders *nject.Collection) error {
 	switch {
 	case mux.special.serveFiles != nil:
 		router.ServeFiles(combinedPath, mux.special.serveFiles)
 	case mux.special.globalOPTIONS:
-		if router.GlobalOPTIONS == nil {
-			return errors.Wrap(combinedProviders.Bind(&router.GlobalOPTIONS, nil), "bind GlobalOPTIONS")
-		}
+		return bindSpecialHandler("GlobalOPTIONS", &router.GlobalOPTIONS, combinedProviders)
 	case mux.special.methodNotAllowed:
-		if router.MethodNotAllowed == nil {
-			return errors.Wrap(combinedProviders.Bind(&router.MethodNotAllowed, nil), "bind MethodNotAllowed")
-		}
+		return bindSpecialHandler("MethodNotAllowed", &router.MethodNotAllowed, combinedProviders)
 	case mux.special.notFound:
-		if router.NotFound == nil {
-			return errors.Wrap(combinedProviders.Bind(&router.NotFound, nil), "bind NotFound")
-		}
+		return bindSpecialHandler("NotFound", &router.NotFound, combinedProviders)
 	case mux.special.panicHandler:
 		if router.PanicHandler == nil {
 			var ph func(w http.ResponseWriter, r *http.Request, rec RecoverInterface)
