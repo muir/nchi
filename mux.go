@@ -77,6 +77,10 @@ func (mux *Mux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	mux.router.ServeHTTP(w, r)
 }
 
+// Bind validates that the injection chains for all routes are valid.
+// If any are not, an error is returned.  If you do not call bind, and
+// there are any invalid injection chains, then routes will panic when
+// used.
 func (mux *Mux) Bind() error {
 	router := httprouter.New()
 	for _, opt := range mux.options {
@@ -125,15 +129,27 @@ func (mux *Mux) Use(providers ...interface{}) {
 	mux.providers = mux.providers.Append(n, translateMiddleware(providers)...)
 }
 
-func (mux *Mux) Get(path string, providers ...interface{})   { mux.Method("GET", path, providers...) }
-func (mux *Mux) Head(path string, providers ...interface{})  { mux.Method("HEAD", path, providers...) }
-func (mux *Mux) Post(path string, providers ...interface{})  { mux.Method("POST", path, providers...) }
-func (mux *Mux) Put(path string, providers ...interface{})   { mux.Method("PUT", path, providers...) }
+// Get establish a route for HTTP GET requests
+func (mux *Mux) Get(path string, providers ...interface{}) { mux.Method("GET", path, providers...) }
+
+// Head establish a route for HTTP HEAD requests
+func (mux *Mux) Head(path string, providers ...interface{}) { mux.Method("HEAD", path, providers...) }
+
+// Post establish a route for HTTP POST requests
+func (mux *Mux) Post(path string, providers ...interface{}) { mux.Method("POST", path, providers...) }
+
+// Put establish a route for HTTP PUT requests
+func (mux *Mux) Put(path string, providers ...interface{}) { mux.Method("PUT", path, providers...) }
+
+// Patch establish a route for HTTP PATCH requests
 func (mux *Mux) Patch(path string, providers ...interface{}) { mux.Method("PATCH", path, providers...) }
+
+// Options establish a route for HTTP OPTIONS requests.
 func (mux *Mux) Options(path string, providers ...interface{}) {
 	mux.Method("OPTIONS", path, providers...)
 }
 
+// Delete establish a route for HTTP DELETE requests.
 func (mux *Mux) Delete(path string, providers ...interface{}) {
 	mux.Method("DELETE", path, providers...)
 }
