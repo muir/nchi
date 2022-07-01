@@ -7,7 +7,7 @@ require (
 	github.com/muir/nject v1.2.0
 	github.com/muir/nvelope v0.3.2
 	github.com/pkg/errors v0.9.1
-	github.com/stretchr/testify v1.7.5
+	github.com/stretchr/testify v1.8.0
 )
 
 require (
