@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/julienschmidt/httprouter v1.3.0
 	github.com/muir/nject v1.3.2
-	github.com/muir/nvelope v0.3.2
+	github.com/muir/nvelope v0.4.0
 	github.com/pkg/errors v0.9.1
 	github.com/stretchr/testify v1.8.1
 )
