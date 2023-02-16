@@ -134,3 +134,19 @@ func TestGroup(t *testing.T) {
 		{path: "/e", want: "a"},
 	})
 }
+
+func TestEndpoint(t *testing.T) {
+	mux := nchi.NewRouter()
+	mux.Get("/thing/:thingID", func(endpoint nchi.Endpoint, w http.ResponseWriter) {
+		_, _ = w.Write([]byte(endpoint))
+	})
+	w := httptest.NewRecorder()
+
+	r := httptest.NewRequest("GET", "/thing/473", nil)
+	mux.ServeHTTP(w, r)
+	body, err := io.ReadAll(w.Result().Body)
+	assert.NoError(t, err)
+	got := string(body)
+	t.Log("->", got)
+	assert.Equal(t, "/thing/:thingID", got)
+}
