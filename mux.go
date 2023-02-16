@@ -11,6 +11,15 @@ import (
 
 type Params = httprouter.Params
 
+// Endpoint is a type that handlers can accepte as an input.  It will be the
+// combined URL path without path variables substituted.  If you have
+//
+//	mux.Get("/thing/:thingID", handler)
+//
+// and handler takes an nchi.Endpoint argument, and there is a request for
+// http://example.com/thing/3802, then the nchi.Endpoint will be "/thing/:thingID".
+type Endpoint string
+
 type Mux struct {
 	providers *nject.Collection // partial set
 	routes    []*Mux
@@ -86,7 +95,7 @@ func (mux *Mux) Bind() error {
 	for _, opt := range mux.options {
 		opt(&rtr{router})
 	}
-	err := mux.bind(router, "", nject.Sequence("empty"))
+	err := mux.bind(router, "")
 	if err != nil {
 		return err
 	}
@@ -94,22 +103,26 @@ func (mux *Mux) Bind() error {
 	return nil
 }
 
-func (mux *Mux) bind(router *httprouter.Router, path string, providers *nject.Collection) error {
+func (mux *Mux) bind(router *httprouter.Router, path string) error {
 	combinedPath := path + mux.path
 	for _, route := range mux.routes {
-		err := route.bind(router, combinedPath, mux.providers)
+		err := route.bind(router, combinedPath)
 		if err != nil {
 			return err
 		}
 	}
+	providers := nject.Sequence(path,
+		Endpoint(combinedPath),
+		mux.providers,
+	)
 	if mux.special != nil {
-		return mux.bindSpecial(router, combinedPath, mux.providers)
+		return mux.bindSpecial(router, combinedPath, providers)
 	}
 	if mux.method == "" {
 		return nil
 	}
 	var handle httprouter.Handle
-	err := mux.providers.Bind(&handle, nil)
+	err := providers.Bind(&handle, nil)
 	if err != nil {
 		return errors.Wrapf(err, "bind router %s %s", mux.method, combinedPath)
 	}
