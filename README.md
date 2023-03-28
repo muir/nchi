@@ -146,4 +146,5 @@ func getArticle(article *Article, w http.ResponseWriter) {
 
 ## Developement status
 
-`nchi` is brand new but has good test coverage.
+`nchi` seems to be working fine for the time being so not much is changing. Please file
+an issue if there is something you would like changed.
