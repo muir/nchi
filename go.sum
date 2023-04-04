@@ -42,8 +42,8 @@ github.com/muir/nject v0.2.0/go.mod h1:vFJkDQciI0UURYI3cSZLyBhYxL3gn+4FvJBY9cZSs
 github.com/muir/nject v0.4.0/go.mod h1:le4jeI0HP94VGIAGbdB4gLMzWENM/uHh8Iq3/Qv8wak=
 github.com/muir/nject v0.5.0/go.mod h1:kOa7nnqqV0tbg2tylEyZ0xtEl4tfC25wow7efbnba+M=
 github.com/muir/nject v1.3.2/go.mod h1:ab6sXXg40/HOuC0hBr7LUGKbnwYuTjfk+6cgtpr3hKY=
-github.com/muir/nject v1.5.0 h1:8M9tbYM3Uw8zyYPchNBf5fb2WnOrc/HVmDYqkvDrebk=
-github.com/muir/nject v1.5.0/go.mod h1:YkPfCewGnkFnr8z+hmIxHZXYPvdRQ+DlDfbq9M2bBng=
+github.com/muir/nject v1.6.0 h1:i6wh1aSE7/71yqxgeuBaG+ApivPOoHkg6yJ5b7ERMsc=
+github.com/muir/nject v1.6.0/go.mod h1:YkPfCewGnkFnr8z+hmIxHZXYPvdRQ+DlDfbq9M2bBng=
 github.com/muir/nvelope v0.2.0/go.mod h1:raB9voDUnhMELiU2fZG7yHYdiRGKSh/FGtsjYWtdbpc=
 github.com/muir/nvelope v0.3.0/go.mod h1:XWPSm68reA4rxkuC/keqHbeFT9QJBorF2ttjF7flzyM=
 github.com/muir/nvelope v0.3.1/go.mod h1:bND7Jn4CqmEEKXyTh+GKtbN4Bi4GKnWRSR4iB5l0+AU=
