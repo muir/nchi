@@ -21,6 +21,6 @@ jobs:
       with:
         go-version: ${{ matrix.go-version }}
     - name: Checkout code
-      uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9
+      uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
     - name: Test
       run: go test ./...
