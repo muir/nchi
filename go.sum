@@ -42,8 +42,8 @@ github.com/muir/nject v0.2.0/go.mod h1:vFJkDQciI0UURYI3cSZLyBhYxL3gn+4FvJBY9cZSs
 github.com/muir/nject v0.4.0/go.mod h1:le4jeI0HP94VGIAGbdB4gLMzWENM/uHh8Iq3/Qv8wak=
 github.com/muir/nject v0.5.0/go.mod h1:kOa7nnqqV0tbg2tylEyZ0xtEl4tfC25wow7efbnba+M=
 github.com/muir/nject v1.3.2/go.mod h1:ab6sXXg40/HOuC0hBr7LUGKbnwYuTjfk+6cgtpr3hKY=
-github.com/muir/nject v1.7.1 h1:AtARVsFdG2FidfgKZZjXIZsZydPS4r+STmWxJO6JMmw=
-github.com/muir/nject v1.7.1/go.mod h1:YkPfCewGnkFnr8z+hmIxHZXYPvdRQ+DlDfbq9M2bBng=
+github.com/muir/nject v1.8.0 h1:hCkm90xcGbCqu2lVl8thX4XbKm24MiKf3BoIyBtmG5I=
+github.com/muir/nject v1.8.0/go.mod h1:qfVLgjr5g834J10AhmE2gx11OSbAGIojbAD58WK6Ot8=
 github.com/muir/nvelope v0.2.0/go.mod h1:raB9voDUnhMELiU2fZG7yHYdiRGKSh/FGtsjYWtdbpc=
 github.com/muir/nvelope v0.3.0/go.mod h1:XWPSm68reA4rxkuC/keqHbeFT9QJBorF2ttjF7flzyM=
 github.com/muir/nvelope v0.3.1/go.mod h1:bND7Jn4CqmEEKXyTh+GKtbN4Bi4GKnWRSR4iB5l0+AU=
@@ -73,8 +73,8 @@ github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/
 github.com/stretchr/testify v1.7.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/stretchr/testify v1.8.0/go.mod h1:yNjHg4UonilssWZ8iaSj1OCr/vHnekPRkoO+kdMU+MU=
 github.com/stretchr/testify v1.8.1/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
-github.com/stretchr/testify v1.8.2 h1:+h33VjcLVPDHtOdpUCuF+7gSuG3yGIftsP1YvFihtJ8=
-github.com/stretchr/testify v1.8.2/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
+github.com/stretchr/testify v1.9.0 h1:HtqpIVDClZ4nwg75+f6Lvsy/wHu+3BoSGCbBAcpTsTg=
+github.com/stretchr/testify v1.9.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/net v0.0.0-20190603091049-60506f45cf65/go.mod h1:HSz+uSET+XFnRR8LxR5pz3Of3rY3CfYBVs4xY44aLks=
 golang.org/x/oauth2 v0.0.0-20170912212905-13449ad91cb2/go.mod h1:N/0e6XlmueqKjAGxoOufVs8QHGRruUQn6yWY3a++T0U=
