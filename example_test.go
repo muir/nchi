@@ -3,7 +3,7 @@ package nchi_test
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http/httptest"
 	"strings"
 
@@ -77,7 +77,7 @@ func Example() {
 			fmt.Println("response error:", err)
 			return
 		}
-		b, err := ioutil.ReadAll(res.Body)
+		b, err := io.ReadAll(res.Body)
 		if err != nil {
 			fmt.Println("read error:", err)
 			return
