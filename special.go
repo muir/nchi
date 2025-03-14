@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
-	"github.com/muir/nject"
+	"github.com/muir/nject/v2"
 
 	"github.com/pkg/errors"
 )
