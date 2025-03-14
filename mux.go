@@ -3,7 +3,7 @@ package nchi
 import (
 	"net/http"
 
-	"github.com/muir/nject"
+	"github.com/muir/nject/v2"
 	"github.com/pkg/errors"
 
 	"github.com/julienschmidt/httprouter"

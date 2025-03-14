@@ -71,7 +71,7 @@ import (
   //...
   "github.com/muir/nchi"
   "github.com/muir/nvelope"
-  "github.com/muir/nject"
+  "github.com/muir/nject/v2"
   "github.com/go-chi/chi/v5/middleware"
 )
 

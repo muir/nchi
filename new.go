@@ -2,7 +2,7 @@ package nchi
 
 import (
 	"github.com/julienschmidt/httprouter"
-	"github.com/muir/nject"
+	"github.com/muir/nject/v2"
 )
 
 type Option func(*rtr)
