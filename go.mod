@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/julienschmidt/httprouter v1.3.0
 	github.com/muir/nject/v2 v2.0.1
-	github.com/muir/nvelope v0.6.0
+	github.com/muir/nvelope v0.6.1
 	github.com/pkg/errors v0.9.1
 	github.com/stretchr/testify v1.10.0
 )

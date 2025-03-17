@@ -33,8 +33,8 @@ github.com/mitchellh/mapstructure v0.0.0-20170523030023-d0303fe80992/go.mod h1:F
 github.com/muir/nape v0.3.0 h1:uyMN6e6CTrXEW+d4GLHxSKMbzRPXftQ6E/Xsbj7GPdE=
 github.com/muir/nject/v2 v2.0.1 h1:3oD22IkYi31BI9TnhCEXFyttNlk1A46qZRLOUB2erMQ=
 github.com/muir/nject/v2 v2.0.1/go.mod h1:cjqpJ4dBVi52Ny0GyPejQ3mK+Vl5mvaTowhfLNIb/ew=
-github.com/muir/nvelope v0.6.0 h1:SExQdpXaMo//v3YjtdSSQiV1dl5/GjPZzGFfRgtsyME=
-github.com/muir/nvelope v0.6.0/go.mod h1:RZ+HorzG1I1Mv/MzKVKQaJAJsqHBxEkPbFZURvpaSd4=
+github.com/muir/nvelope v0.6.1 h1:VOhRotIop9e2pZkoS2qUYZ52rNNLjlH3/1tEofCzMaQ=
+github.com/muir/nvelope v0.6.1/go.mod h1:fV9ovgML89BaLR1iTnDqdUj5+TjQCpC7XafZ+56ALW0=
 github.com/muir/reflectutils v0.11.0 h1:h3rJpAq3KcKh65DLcrFgkzXdpmTHNOX66ar8/VQGrRg=
 github.com/muir/reflectutils v0.11.0/go.mod h1:q/NHh230BgwnQX3fO3ooroT9c5y6Ymo44AEUnLPwYhc=
 github.com/pelletier/go-toml v1.0.1-0.20170904195809-1d6b12b7cb29/go.mod h1:5z9KED0ma1S8pY6P1sdut58dfprrGBbd/94hg7ilaic=
