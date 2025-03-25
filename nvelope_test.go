@@ -30,10 +30,10 @@ func TestDecoders(t *testing.T) {
 	mux := nchi.NewRouter(nchi.WithRedirectFixedPath(true))
 	mux.Use(nvelope.MinimalErrorHandler, nvelope.ReadBody)
 	mux.Post("/td1/:zoomie/foo", nchi.DecodeJSON, func(p parameters, w http.ResponseWriter) {
-		_, _ = w.Write([]byte(fmt.Sprintf("bi %d z %d w %s", p.Body.I, p.Zoom, p.Who)))
+		_, _ = fmt.Fprintf(w, "bi %d z %d w %s", p.Body.I, p.Zoom, p.Who)
 	})
 	mux.Post("/td2/:zoomie/bar", nchi.DecodeXML, func(p parameters, w http.ResponseWriter) {
-		_, _ = w.Write([]byte(fmt.Sprintf("bi %d z %d w %s", p.Body.I, p.Zoom, p.Who)))
+		_, _ = fmt.Fprintf(w, "bi %d z %d w %s", p.Body.I, p.Zoom, p.Who)
 	})
 
 	w := httptest.NewRecorder()

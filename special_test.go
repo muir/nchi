@@ -55,10 +55,10 @@ func TestPanicHandler(t *testing.T) {
 	mux.Use(makeUp1("a"))
 	mux.Get("/ph2", func(w http.ResponseWriter) {
 		x := make([]int, 3)
-		_, _ = w.Write([]byte(fmt.Sprint(x[5])))
+		_, _ = fmt.Fprint(w, x[5])
 	})
 	mux.PanicHandler(func(w http.ResponseWriter, r nchi.RecoverInterface) {
-		_, _ = w.Write([]byte(fmt.Sprintf("recover %T-", r)))
+		_, _ = fmt.Fprintf(w, "recover %T-", r)
 	})
 	mux.Get("/ph1", bottom)
 
