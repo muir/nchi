@@ -82,7 +82,7 @@ func Example() {
 			fmt.Println("read error:", err)
 			return
 		}
-		res.Body.Close()
+		_ = res.Body.Close()
 		fmt.Println(res.StatusCode, "->"+string(b))
 	}
 	doPost("/a/path/joe/37", `{"Use":"yeah","Exported":"uh hu"}`)
