@@ -31,8 +31,8 @@ github.com/mattn/go-colorable v0.0.10-0.20170816031813-ad5389df28cd/go.mod h1:9v
 github.com/mattn/go-isatty v0.0.2/go.mod h1:M+lRXTBqGeGNdLjl/ufCoiOlB5xdOkqRJdNxMWT7Zi4=
 github.com/mitchellh/mapstructure v0.0.0-20170523030023-d0303fe80992/go.mod h1:FVVH3fgwuzCH5S8UJGiWEs2h04kUh9fWfEaFds41c1Y=
 github.com/muir/nape v0.3.0 h1:uyMN6e6CTrXEW+d4GLHxSKMbzRPXftQ6E/Xsbj7GPdE=
-github.com/muir/nject/v2 v2.0.2 h1:dlvgOYwSjYA8UqkTUxavus/Q4pVJoDaufSdQt+QcGU4=
-github.com/muir/nject/v2 v2.0.2/go.mod h1:cjqpJ4dBVi52Ny0GyPejQ3mK+Vl5mvaTowhfLNIb/ew=
+github.com/muir/nject/v2 v2.1.0 h1:6O1uvvOcXOcZ7RtGblpB2yxDIoEGcbMj4lOqHu7A3z0=
+github.com/muir/nject/v2 v2.1.0/go.mod h1:cjqpJ4dBVi52Ny0GyPejQ3mK+Vl5mvaTowhfLNIb/ew=
 github.com/muir/nvelope v0.6.2 h1:MbnW0fZrH8uD/UrPzx/Y24AlD6qmyiTysFsjUMvgvXM=
 github.com/muir/nvelope v0.6.2/go.mod h1:iapg22yQLJ2bMCwVqiCMFrJVGi3nsWaE3DUPMMRVUkI=
 github.com/muir/reflectutils v0.11.0 h1:h3rJpAq3KcKh65DLcrFgkzXdpmTHNOX66ar8/VQGrRg=
