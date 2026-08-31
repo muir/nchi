@@ -1,6 +1,6 @@
 module github.com/muir/nchi
 
-go 1.20
+go 1.23
 
 require (
 	github.com/julienschmidt/httprouter v1.3.0
